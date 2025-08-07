@@ -3,12 +3,7 @@
   "include": ["src"],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "composite": true,
     "outDir": "dist",
     "rootDir": "src"
-  },
-  "references": [
-    { "path": "../../ui" },
-    { "path": "../../supabase" }
-  ]
+  }
 }
