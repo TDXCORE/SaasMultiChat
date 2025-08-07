@@ -1,11 +1,68 @@
-import type { Database } from '@kit/supabase/database';
+// Placeholder types for messages feature
+// These will be replaced with actual database types when the schema is implemented
 
-export type Message = Database['public']['Tables']['messages']['Row'];
-export type MessageInsert = Database['public']['Tables']['messages']['Insert'];
-export type MessageUpdate = Database['public']['Tables']['messages']['Update'];
+export interface Message {
+  id: string;
+  conversation_id: string;
+  content: string;
+  message_type: 'incoming' | 'outgoing' | 'activity';
+  content_type: 'text' | 'input_email' | 'input_text' | 'cards' | 'form' | 'article' | 'incoming_email';
+  private: boolean;
+  sender_type: 'User' | 'Contact' | 'Agent';
+  sender_id?: string;
+  external_source_id?: string;
+  additional_attributes?: Record<string, any>;
+  created_at: string;
+  updated_at: string;
+}
 
-export type Attachment = Database['public']['Tables']['attachments']['Row'];
-export type AttachmentInsert = Database['public']['Tables']['attachments']['Insert'];
+export interface MessageInsert {
+  conversation_id: string;
+  content: string;
+  message_type?: 'incoming' | 'outgoing' | 'activity';
+  content_type?: 'text' | 'input_email' | 'input_text' | 'cards' | 'form' | 'article' | 'incoming_email';
+  private?: boolean;
+  sender_type?: 'User' | 'Contact' | 'Agent';
+  sender_id?: string;
+  external_source_id?: string;
+  additional_attributes?: Record<string, any>;
+}
+
+export interface MessageUpdate {
+  content?: string;
+  message_type?: 'incoming' | 'outgoing' | 'activity';
+  content_type?: 'text' | 'input_email' | 'input_text' | 'cards' | 'form' | 'article' | 'incoming_email';
+  private?: boolean;
+  sender_type?: 'User' | 'Contact' | 'Agent';
+  sender_id?: string;
+  external_source_id?: string;
+  additional_attributes?: Record<string, any>;
+}
+
+export interface Attachment {
+  id: string;
+  message_id: string;
+  file_type: 'image' | 'audio' | 'video' | 'file';
+  file_size?: number;
+  fallback_title?: string;
+  data_url?: string;
+  external_url?: string;
+  coordinates_lat?: number;
+  coordinates_long?: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AttachmentInsert {
+  message_id: string;
+  file_type: 'image' | 'audio' | 'video' | 'file';
+  file_size?: number;
+  fallback_title?: string;
+  data_url?: string;
+  external_url?: string;
+  coordinates_lat?: number;
+  coordinates_long?: number;
+}
 
 export interface MessageWithDetails extends Message {
   sender?: {
