@@ -1,4 +1,4 @@
-import { Home, User } from 'lucide-react';
+import { Home, User, MessageCircle, Users } from 'lucide-react';
 import { z } from 'zod';
 
 import { NavigationConfigSchema } from '@kit/ui/navigation-schema';
@@ -16,6 +16,16 @@ const routes = [
         path: pathsConfig.app.home,
         Icon: <Home className={iconClasses} />,
         end: true,
+      },
+      {
+        label: 'Conversations',
+        path: pathsConfig.app.conversations,
+        Icon: <MessageCircle className={iconClasses} />,
+      },
+      {
+        label: 'Contacts',
+        path: pathsConfig.app.contacts,
+        Icon: <Users className={iconClasses} />,
       },
     ],
   },

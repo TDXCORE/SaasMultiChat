@@ -1,0 +1,46 @@
+{
+  "name": "@kit/conversations",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsup",
+    "clean": "rimraf dist",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./components": "./src/components/index.ts",
+    "./hooks": "./src/hooks/index.ts",
+    "./server": "./src/server/index.ts",
+    "./types": "./src/types/index.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@kit/supabase": "workspace:*",
+    "@kit/ui": "workspace:*",
+    "@kit/shared": "workspace:*",
+    "@tanstack/react-query": "^5.59.16",
+    "react": "19.0.0",
+    "react-hook-form": "^7.54.0",
+    "zod": "^3.23.8",
+    "zustand": "^5.0.1",
+    "lucide-react": "^0.460.0",
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "@kit/eslint-config": "workspace:*",
+    "@kit/prettier-config": "workspace:*",
+    "@kit/tsconfig": "workspace:*",
+    "@types/react": "^18.3.12",
+    "eslint": "^9.15.0",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  },
+  "eslintConfig": {
+    "extends": ["@kit/eslint-config"]
+  },
+  "prettier": "@kit/prettier-config"
+}
