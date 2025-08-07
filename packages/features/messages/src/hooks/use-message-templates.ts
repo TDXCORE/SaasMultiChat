@@ -1,10 +1,10 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useSupabaseClient } from '@kit/supabase/client';
+import { useSupabase } from '@kit/supabase/hooks/use-supabase';
 import { useState, useCallback } from 'react';
 import type { MessageTemplate, QuickReply } from '../types';
 
 export function useMessageTemplates(accountId: string) {
-  const supabase = useSupabaseClient();
+  const supabase = useSupabase();
   
   return useQuery({
     queryKey: ['message-templates', accountId],
@@ -40,7 +40,7 @@ export function useMessageTemplates(accountId: string) {
 }
 
 export function useQuickReplies(accountId: string) {
-  const supabase = useSupabaseClient();
+  const supabase = useSupabase();
   
   return useQuery({
     queryKey: ['quick-replies', accountId],
@@ -101,11 +101,11 @@ export function useTemplateVariables() {
 
   const extractVariables = useCallback((template: string): string[] => {
     const regex = /\{\{(\w+)\}\}/g;
-    const matches = [];
-    let match;
+    const matches: string[] = [];
+    let match: RegExpExecArray | null;
     
     while ((match = regex.exec(template)) !== null) {
-      if (!matches.includes(match[1])) {
+      if (match[1] && !matches.includes(match[1])) {
         matches.push(match[1]);
       }
     }

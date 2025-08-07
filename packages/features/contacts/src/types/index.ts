@@ -1,8 +1,52 @@
-import type { Database } from '@kit/supabase/database';
+// Placeholder types for contacts feature
+// These will be replaced with actual database types when the schema is implemented
 
-export type Contact = Database['public']['Tables']['contacts']['Row'];
-export type ContactInsert = Database['public']['Tables']['contacts']['Insert'];
-export type ContactUpdate = Database['public']['Tables']['contacts']['Update'];
+export interface Contact {
+  id: string;
+  account_id: string;
+  name?: string;
+  email?: string;
+  phone_number?: string;
+  avatar_url?: string;
+  identifier?: string;
+  additional_attributes?: Record<string, any>;
+  custom_attributes?: Record<string, any>;
+  location?: string;
+  country_code?: string;
+  blocked?: boolean;
+  source?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ContactInsert {
+  account_id: string;
+  name?: string;
+  email?: string;
+  phone_number?: string;
+  avatar_url?: string;
+  identifier?: string;
+  additional_attributes?: Record<string, any>;
+  custom_attributes?: Record<string, any>;
+  location?: string;
+  country_code?: string;
+  blocked?: boolean;
+  source?: string;
+}
+
+export interface ContactUpdate {
+  name?: string;
+  email?: string;
+  phone_number?: string;
+  avatar_url?: string;
+  identifier?: string;
+  additional_attributes?: Record<string, any>;
+  custom_attributes?: Record<string, any>;
+  location?: string;
+  country_code?: string;
+  blocked?: boolean;
+  source?: string;
+}
 
 export interface ContactWithDetails extends Contact {
   conversations_count?: number;

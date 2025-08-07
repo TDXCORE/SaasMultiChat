@@ -1,16 +1,85 @@
-import type { 
-  Conversation, 
-  Message, 
-  Contact, 
-  User, 
-  Inbox, 
-  Team, 
-  Label,
-  ConversationStatus,
-  ConversationPriority,
-  MessageType,
-  ContentType
-} from '~/lib/database.types';
+// Placeholder types for conversations feature
+// These will be replaced with actual database types when the schema is implemented
+
+export type ConversationStatus = 'open' | 'resolved' | 'pending' | 'snoozed';
+export type ConversationPriority = 'low' | 'medium' | 'high' | 'urgent';
+export type MessageType = 'incoming' | 'outgoing' | 'activity';
+export type ContentType = 'text' | 'input_email' | 'input_text' | 'cards' | 'form' | 'article' | 'incoming_email';
+
+export interface Conversation {
+  id: string;
+  account_id: string;
+  contact_id?: string;
+  inbox_id: string;
+  assignee_id?: string;
+  team_id?: string;
+  status: ConversationStatus;
+  priority?: ConversationPriority;
+  last_activity_at: string;
+  created_at: string;
+  updated_at: string;
+  custom_attributes?: Record<string, any>;
+  snoozed_until?: string;
+}
+
+export interface Message {
+  id: string;
+  conversation_id: string;
+  content: string;
+  message_type: MessageType;
+  content_type: ContentType;
+  private: boolean;
+  sender_type: 'User' | 'Contact' | 'Agent';
+  sender_id?: string;
+  external_source_id?: string;
+  additional_attributes?: Record<string, any>;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Contact {
+  id: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  avatar_url?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface User {
+  id: string;
+  name?: string;
+  email?: string;
+  avatar_url?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Inbox {
+  id: string;
+  name: string;
+  account_id: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Team {
+  id: string;
+  name: string;
+  account_id: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Label {
+  id: string;
+  title: string;
+  color: string;
+  account_id: string;
+  created_at: string;
+  updated_at: string;
+}
 
 // Extended conversation type with all relations
 export interface ConversationWithDetails extends Conversation {

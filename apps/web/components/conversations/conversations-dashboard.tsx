@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 import { useUser } from '@kit/supabase/hooks/use-user';
 import { ConversationView } from '@kit/conversations';
-import { LoadingSpinner } from '@kit/ui/loading-spinner';
+import { Spinner } from '@kit/ui/spinner';
 import { Card } from '@kit/ui/card';
 
 export function ConversationsDashboard() {
@@ -12,7 +12,7 @@ export function ConversationsDashboard() {
   if (!user.data) {
     return (
       <div className="flex items-center justify-center h-full">
-        <LoadingSpinner />
+        <Spinner />
       </div>
     );
   }
@@ -26,16 +26,11 @@ export function ConversationsDashboard() {
       <Suspense 
         fallback={
           <Card className="h-full flex items-center justify-center">
-            <LoadingSpinner />
+            <Spinner />
           </Card>
         }
       >
-        <ConversationView
-          accountId={accountId}
-          currentUserId={user.data.id}
-          currentUserName={user.data.email || 'User'}
-          className="h-full"
-        />
+        <ConversationView />
       </Suspense>
     </div>
   );

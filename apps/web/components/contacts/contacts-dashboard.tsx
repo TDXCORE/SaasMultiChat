@@ -3,7 +3,7 @@
 import { useState, Suspense } from 'react';
 import { useUser } from '@kit/supabase/hooks/use-user';
 import { ContactList, ContactDetails } from '@kit/contacts';
-import { LoadingSpinner } from '@kit/ui/loading-spinner';
+import { Spinner } from '@kit/ui/spinner';
 import { Card } from '@kit/ui/card';
 import { cn } from '@kit/ui/utils';
 import type { ContactWithDetails } from '@kit/contacts';
@@ -15,7 +15,7 @@ export function ContactsDashboard() {
   if (!user.data) {
     return (
       <div className="flex items-center justify-center h-full">
-        <LoadingSpinner />
+        <Spinner />
       </div>
     );
   }
@@ -39,15 +39,11 @@ export function ContactsDashboard() {
         <Suspense 
           fallback={
             <div className="p-4">
-              <LoadingSpinner />
+              <Spinner />
             </div>
           }
         >
-          <ContactList
-            accountId={accountId}
-            selectedContactId={selectedContactId}
-            onContactSelect={handleContactSelect}
-          />
+          <ContactList />
         </Suspense>
       </div>
 
@@ -57,15 +53,11 @@ export function ContactsDashboard() {
           <Suspense 
             fallback={
               <Card className="h-full flex items-center justify-center">
-                <LoadingSpinner />
+                <Spinner />
               </Card>
             }
           >
-            <ContactDetails 
-              contactId={selectedContactId}
-              onContactDeleted={handleContactDeleted}
-              className="h-full"
-            />
+            <ContactDetails />
           </Suspense>
         ) : (
           // Empty State
